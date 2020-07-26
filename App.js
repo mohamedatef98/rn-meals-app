@@ -1,14 +1,38 @@
 import { StatusBar } from 'expo-status-bar'
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { AppLoading } from 'expo'
+
+import { loadAsync } from 'expo-font'
+
+const loadFonts = () => loadAsync({
+    regular: require('./assets/fonts/OpenSans-Regular.ttf'),
+    bold: require('./assets/fonts/OpenSans-Bold.ttf')
+})
 
 const App = props => {
-    return (
+    const [isLoading, setIsLoading] = useState(true)
+
+    const handleOnLoadingSuccess = useCallback(
+        () => setIsLoading(false),
+        []
+    )
+
+    const handleOnLoadingError = useCallback(
+        err => console.error(err),
+        []
+    )
+
+    return isLoading ?
+        <AppLoading
+            startAsync={() => Promise.all([loadFonts()])}
+            onFinish={handleOnLoadingSuccess}
+            onError={handleOnLoadingError}
+        /> :
         <View style={styles.container}>
             <Text>Open up App.js to start working on your app!</Text>
             <StatusBar style="auto" />
         </View>
-    )
 }
 
 const styles = StyleSheet.create({
