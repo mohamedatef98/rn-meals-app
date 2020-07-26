@@ -5,10 +5,9 @@ import { AppLoading } from 'expo'
 
 import { loadAsync } from 'expo-font'
 
-const loadFonts = () => loadAsync({
-    regular: require('./assets/fonts/OpenSans-Regular.ttf'),
-    bold: require('./assets/fonts/OpenSans-Bold.ttf')
-})
+import { FontsPaths } from './theme'
+
+const loadFonts = () => loadAsync(FontsPaths)
 
 const App = props => {
     const [isLoading, setIsLoading] = useState(true)
