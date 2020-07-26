@@ -1,13 +1,16 @@
-import { StatusBar } from 'expo-status-bar'
 import React, { useState, useCallback } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { AppLoading } from 'expo'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
 import { loadAsync } from 'expo-font'
 
+import { CategoriesList, Category, MealDetails } from './screens'
 import { FontsPaths } from './theme'
 
 const loadFonts = () => loadAsync(FontsPaths)
+
+const Stack = createStackNavigator()
 
 const App = props => {
     const [isLoading, setIsLoading] = useState(true)
@@ -28,19 +31,13 @@ const App = props => {
             onFinish={handleOnLoadingSuccess}
             onError={handleOnLoadingError}
         /> :
-        <View style={styles.container}>
-            <Text>Open up App.js to start working on your app!</Text>
-            <StatusBar style="auto" />
-        </View>
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="CategoriesList" component={CategoriesList} />
+                <Stack.Screen name="Category" component={Category} />
+                <Stack.Screen name="MealDetails" component={MealDetails} />
+            </Stack.Navigator>
+        </NavigationContainer>
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
-})
 
 export default App
