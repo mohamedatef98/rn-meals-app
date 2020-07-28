@@ -1,19 +1,24 @@
-import React from 'react'
-import { Text, View, StyleSheet, FlatList } from 'react-native'
+import React, { useCallback } from 'react'
+import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 
 import { CATEGORIES } from '../data/dummy-data'
 
-const CategoriesList = props => (
-    <View>
+const CategoriesList = ({ navigation }) => {
+
+    const handleCategoryPress = (category) => navigation.navigate('Category', { category })
+
+    return <View>
         <FlatList
             data={CATEGORIES}
             numColumns={2}
-            renderItem={({ item }) => <View style={styles.gridItem}>
-                <Text>{item.title}</Text>
-            </View>}
+            renderItem={({ item }) => <TouchableOpacity style={styles.gridItem} onPress={() => handleCategoryPress(item)}>
+                <View>
+                    <Text>{item.title}</Text>
+                </View>
+            </TouchableOpacity>}
         />
     </View>
-)
+}
 
 const styles = StyleSheet.create({
     gridItem: {
