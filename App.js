@@ -3,11 +3,14 @@ import { Platform } from 'react-native'
 import { AppLoading } from 'expo'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { enableScreens } from 'react-native-screens'
 
 import { loadAsync } from 'expo-font'
 
 import { CategoriesList, Category, MealDetails } from './screens'
 import { FontsPaths, Colors } from './theme'
+
+enableScreens()
 
 const loadFonts = () => loadAsync(FontsPaths)
 
