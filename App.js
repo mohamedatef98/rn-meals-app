@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react'
+import { Platform } from 'react-native'
 import { AppLoading } from 'expo'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -6,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { loadAsync } from 'expo-font'
 
 import { CategoriesList, Category, MealDetails } from './screens'
-import { FontsPaths } from './theme'
+import { FontsPaths, Colors } from './theme'
 
 const loadFonts = () => loadAsync(FontsPaths)
 
@@ -32,7 +33,24 @@ const App = props => {
             onError={handleOnLoadingError}
         /> :
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerStyle: {
+                        backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
+                    },
+                    headerTitleStyle: {
+                        ...Platform.select({
+                            ios: {
+                                color: Colors.primary,
+                                fontSize: 20
+                            },
+                            android: {
+                                color: 'white'
+                            }
+                        })
+                    }
+                }}
+            >
                 <Stack.Screen
                     name='CategoriesList'
                     options={{ title: 'Categories' }}
