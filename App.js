@@ -33,9 +33,20 @@ const App = props => {
         /> :
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="CategoriesList" component={CategoriesList} />
-                <Stack.Screen name="Category" component={Category} />
-                <Stack.Screen name="MealDetails" component={MealDetails} />
+                <Stack.Screen
+                    name='CategoriesList'
+                    options={{ title: 'Categories' }}
+                    component={CategoriesList}
+                />
+                <Stack.Screen
+                    name='Category'
+                    options={({ route }) => ({ title: route?.params?.category?.title })}
+                    component={Category}
+                />
+                <Stack.Screen
+                    name='MealDetails'
+                    component={MealDetails}
+                />
             </Stack.Navigator>
         </NavigationContainer>
 }
