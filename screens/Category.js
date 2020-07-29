@@ -1,6 +1,8 @@
 import React from 'react'
 import { Text, View, StyleSheet, FlatList } from 'react-native'
 
+import { MealCard } from '../components'
+
 import { MEALS } from '../data/dummy-data'
 
 const Category = ({ route }) => {
@@ -10,12 +12,17 @@ const Category = ({ route }) => {
 
     return <View>
         <FlatList
+            style={styles.mealList}
             data={meals}
-            renderItem={({ item }) => <Text>{item.title}</Text>}
+            renderItem={({ item }) => <MealCard onPress={() => {}} meal={item} />}
         />
     </View>
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    mealList: {
+        margin: 10
+    }
+})
 
 export default Category
