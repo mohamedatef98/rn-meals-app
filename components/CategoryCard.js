@@ -6,7 +6,7 @@ import { Fonts } from '../theme'
 const CategoryCard = ({ category, onPress }) => {
     const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity
 
-    return <View style={styles.container}>
+    return <View style={styles.categoryContainer}>
         <Touchable onPress={onPress} style={styles.touchable}>
             <View style={[styles.gridItem, { backgroundColor: category.color }]}>
                 <Text style={styles.text} numberOfLines={2}>{category.title}</Text>
@@ -16,17 +16,12 @@ const CategoryCard = ({ category, onPress }) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
+    categoryContainer: {
         flex: 1,
-        borderRadius: 10,
-        overflow: 'hidden',
-        margin: 15,
         height: 150,
-        elevation: 3,
-        shadowColor: 'black',
-        shadowOpacity: 0.26,
-        shadowRadius: 10,
-        shadowOffset: { width: 2, height: 2 }
+        margin: 15,
+        borderRadius: 10,
+        overflow: 'hidden'
     },
     touchable: {
         flex: 1
