@@ -1,5 +1,7 @@
-import React, { useCallback } from 'react'
-import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { View, StyleSheet, FlatList } from 'react-native'
+
+import { CategoryCard } from '../components'
 
 import { CATEGORIES } from '../data/dummy-data'
 
@@ -11,21 +13,11 @@ const CategoriesList = ({ navigation }) => {
         <FlatList
             data={CATEGORIES}
             numColumns={2}
-            renderItem={({ item }) => <TouchableOpacity style={styles.gridItem} onPress={() => handleCategoryPress(item)}>
-                <View>
-                    <Text>{item.title}</Text>
-                </View>
-            </TouchableOpacity>}
+            renderItem={({ item }) => <CategoryCard category={item} onPress={() => handleCategoryPress(item)} />}
         />
     </View>
 }
 
-const styles = StyleSheet.create({
-    gridItem: {
-        flex: 1,
-        margin: 15,
-        height: 150
-    }
-})
+const styles = StyleSheet.create({})
 
 export default CategoriesList
