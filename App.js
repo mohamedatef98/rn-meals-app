@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from 'react'
-import { Platform } from 'react-native'
+import { Platform, View, TouchableOpacity, StyleSheet } from 'react-native'
 import { AppLoading } from 'expo'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { enableScreens } from 'react-native-screens'
 
 import { loadAsync } from 'expo-font'
+import { Ionicons } from '@expo/vector-icons'
 
 import { CategoriesList, Category, MealDetails } from './screens'
 import { FontsPaths, Colors } from './theme'
@@ -66,11 +67,31 @@ const App = props => {
                 />
                 <Stack.Screen
                     name='MealDetails'
-                    options={({ route }) => ({ title: route?.params?.meal?.title })}
+                    options={({ route }) => ({
+                        title: route?.params?.meal?.title,
+                        headerRight: () => <TouchableOpacity
+                            style={styles.favoriteHeaderButton}
+                            onPress={() => console.log('ddfdfd')}
+                        >
+                            <Ionicons name="ios-star" size={25} />
+                        </TouchableOpacity>
+                    })}
                     component={MealDetails}
                 />
             </Stack.Navigator>
         </NavigationContainer>
 }
+
+const styles = StyleSheet.create({
+    favoriteHeaderButton: {
+        padding: 10,
+        borderRadius: 20,
+        marginRight: 10,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+})
 
 export default App
