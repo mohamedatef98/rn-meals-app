@@ -1,11 +1,20 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, FlatList } from 'react-native'
 
-const Category = props => (
-    <View>
-        <Text>The Category Screen</Text>
+import { MEALS } from '../data/dummy-data'
+
+const Category = ({ route }) => {
+    const { category } = route.params
+
+    const meals = MEALS.filter(meal => meal.categoryIds.includes(category.id))
+
+    return <View>
+        <FlatList
+            data={meals}
+            renderItem={({ item }) => <Text>{item.title}</Text>}
+        />
     </View>
-)
+}
 
 const styles = StyleSheet.create({})
 
