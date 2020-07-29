@@ -6,7 +6,7 @@ import { enableScreens } from 'react-native-screens'
 
 import { loadAsync } from 'expo-font'
 
-import StackNavigator from './navigators/Stack'
+import TabsNavigator from './navigators/Tabs'
 import { FontsPaths } from './theme'
 
 enableScreens()
@@ -35,7 +35,7 @@ const App = props => {
             onError={handleOnLoadingError}
         /> :
         <NavigationContainer>
-            <StackNavigator />
+            <TabsNavigator />
         </NavigationContainer>
 }
 
