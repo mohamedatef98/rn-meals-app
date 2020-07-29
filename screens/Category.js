@@ -5,7 +5,7 @@ import { MealCard } from '../components'
 
 import { MEALS } from '../data/dummy-data'
 
-const Category = ({ route }) => {
+const Category = ({ route, navigation }) => {
     const { category } = route.params
 
     const meals = MEALS.filter(meal => meal.categoryIds.includes(category.id))
@@ -14,7 +14,7 @@ const Category = ({ route }) => {
         <FlatList
             style={styles.mealList}
             data={meals}
-            renderItem={({ item }) => <MealCard onPress={() => {}} meal={item} />}
+            renderItem={({ item: meal }) => <MealCard onPress={() => navigation.navigate('MealDetails', { meal })} meal={meal} />}
         />
     </View>
 }

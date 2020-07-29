@@ -66,6 +66,7 @@ const App = props => {
                 />
                 <Stack.Screen
                     name='MealDetails'
+                    options={({ route }) => ({ title: route?.params?.meal?.title })}
                     component={MealDetails}
                 />
             </Stack.Navigator>
