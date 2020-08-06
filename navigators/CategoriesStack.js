@@ -1,11 +1,9 @@
 import React from 'react'
-import { TouchableOpacity, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { Ionicons } from '@expo/vector-icons'
-
 import { CategoriesList, MealDetails, Category } from '../screens'
-import { DrawerButton } from '../components'
+import { DrawerButton, FavoriteButton } from '../components'
 import { Colors } from '../theme'
 
 import sharedScreenOptions from './stackSharedScreenOptions'
@@ -31,12 +29,7 @@ const StackNavigator = ({ navigation }) => {
             name='MealDetails'
             options={({ route }) => ({
                 title: route?.params?.meal?.title,
-                headerRight: () => <TouchableOpacity
-                    style={styles.favoriteHeaderButton}
-                    onPress={() => console.log('ddfdfd')}
-                >
-                    <Ionicons name="ios-star" size={25} />
-                </TouchableOpacity>
+                headerRight: FavoriteButton
             })}
             component={MealDetails}
         />
