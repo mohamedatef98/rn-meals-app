@@ -6,7 +6,7 @@ import Touchable from './Touchable'
 
 const DrawerButton = ({ navigation }) => {
     return <View style={styles.container}>
-        <Touchable onPress={() => navigation.openDrawer()} activeOpacity={0.8}>
+        <Touchable onPress={() => navigation.openDrawer()}>
             <View style={styles.icon}>
                 <Ionicons name='ios-menu' size={30} color={Platform.OS === 'ios' ? 'black' : 'white'} />
             </View>
