@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, TouchableOpacity, StyleSheet } from 'react-native'
+import { TouchableOpacity, StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { Ionicons } from '@expo/vector-icons'
@@ -7,27 +7,12 @@ import { Ionicons } from '@expo/vector-icons'
 import { CategoriesList, MealDetails, Category } from '../screens'
 import { Colors } from '../theme'
 
+import sharedScreenOptions from './stackSharedScreenOptions'
+
 const Stack = createStackNavigator()
 
 const StackNavigator = props => {
-    return <Stack.Navigator
-        screenOptions={{
-            headerStyle: {
-                backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
-            },
-            headerTitleStyle: {
-                ...Platform.select({
-                    ios: {
-                        color: Colors.primary,
-                        fontSize: 20
-                    },
-                    android: {
-                        color: 'white'
-                    }
-                })
-            }
-        }}
-    >
+    return <Stack.Navigator screenOptions={sharedScreenOptions(Colors.primary)}>
         <Stack.Screen
             name='CategoriesList'
             options={{ title: 'Categories' }}

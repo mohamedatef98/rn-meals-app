@@ -4,8 +4,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { Ionicons } from '@expo/vector-icons'
 import { Platform } from 'react-native'
 
-import StackNavigator from './Stack'
-import { Favorites } from '../screens'
+import CategoriesStackNavigator from './CategoriesStack'
+import FavoritesStackNavigator from './FavoritesStack'
 import { Colors } from '../theme'
 
 const Tabs = Platform.OS === 'android' ? createMaterialBottomTabNavigator() : createBottomTabNavigator()
@@ -24,7 +24,7 @@ const TabsNavigator = props => {
         >
         <Tabs.Screen
             name='Meals'
-            component={StackNavigator}
+            component={CategoriesStackNavigator}
             options={{
                 tabBarIcon: ({ color, size }) => <Ionicons name='ios-restaurant' size={size} color={color} />,
                 tabBarColor: Colors.primary
@@ -32,7 +32,7 @@ const TabsNavigator = props => {
         />
         <Tabs.Screen
             name='Favorites'
-            component={Favorites}
+            component={FavoritesStackNavigator}
             options={{
                 tabBarIcon: ({ color, size }) => <Ionicons name='ios-star' size={size} color={color} />,
                 tabBarColor: Colors.accent
