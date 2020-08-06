@@ -6,7 +6,7 @@ import Touchable from './Touchable'
 
 const FavoriteButton = (props) => {
     return <View style={styles.container}>
-        <Touchable onPress={() => console.log('dffdfff')} activeOpacity={0.8}>
+        <Touchable onPress={() => console.log('dffdfff')}>
             <View style={styles.icon}>
                 <Ionicons name='ios-star' size={30} color={Platform.OS === 'ios' ? 'black' : 'white'} />
             </View>
