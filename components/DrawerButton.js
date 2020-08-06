@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 const DrawerButton = ({ navigation }) => {
     return <TouchableOpacity style={styles.container} onPress={() => navigation.openDrawer()}>
-        <Ionicons name='ios-menu' size={30} />
+        <Ionicons name='ios-menu' size={30} color='white' />
     </TouchableOpacity>
 }
 
