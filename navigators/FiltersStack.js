@@ -9,7 +9,7 @@ import sharedScreenOptions from './stackSharedScreenOptions'
 const Stack = createStackNavigator()
 
 const FiltersStack = ({ navigation }) => {
-    return <Stack.Navigator screenOptions={sharedScreenOptions('black')}>
+    return <Stack.Navigator screenOptions={sharedScreenOptions('grey')}>
         <Stack.Screen
             component={Filters}
             name='Filters'
