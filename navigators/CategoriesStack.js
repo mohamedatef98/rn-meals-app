@@ -5,17 +5,21 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Ionicons } from '@expo/vector-icons'
 
 import { CategoriesList, MealDetails, Category } from '../screens'
+import { DrawerButton } from '../components'
 import { Colors } from '../theme'
 
 import sharedScreenOptions from './stackSharedScreenOptions'
 
 const Stack = createStackNavigator()
 
-const StackNavigator = props => {
+const StackNavigator = ({ navigation }) => {
     return <Stack.Navigator screenOptions={sharedScreenOptions(Colors.primary)}>
         <Stack.Screen
             name='CategoriesList'
-            options={{ title: 'Categories' }}
+            options={{
+                title: 'Categories',
+                headerLeft: () => <DrawerButton navigation={navigation} />
+            }}
             component={CategoriesList}
         />
         <Stack.Screen
