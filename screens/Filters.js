@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
+import { useDispatch } from 'react-redux'
 
 import { FilterControl } from '../components'
 import { Fonts } from '../theme'
+import { setFilters } from '../store'
 
 const Filters = ({ navigation }) => {
     const [isGlutenFree, setIsGlutenFree] = useState(false)
@@ -10,16 +12,16 @@ const Filters = ({ navigation }) => {
     const [isVegan, setIsVegan] = useState(false)
     const [isVegetaran, setIsVegetaran] = useState(false)
 
+    const dispatch = useDispatch()
+
     const saveFilters = useCallback(
-        () => {
-            console.log({
-                isGlutenFree,
-                isLactoseFree,
-                isVegan,
-                isVegetaran
-            })
-        },
-        [isGlutenFree, isLactoseFree, isVegan, isVegetaran]
+        () => dispatch(setFilters({
+            isGlutenFree,
+            isLactoseFree,
+            isVegan,
+            isVegetaran
+        })),
+        [isGlutenFree, isLactoseFree, isVegan, isVegetaran, dispatch]
     )
 
     useEffect(() => {
