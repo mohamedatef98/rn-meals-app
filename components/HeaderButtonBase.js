@@ -16,7 +16,7 @@ const HeaderButtonBase = ({ iconName, onPress, color }) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 20,
+        marginHorizontal: 7,
         borderRadius: 20,
         overflow: 'hidden'
     },
