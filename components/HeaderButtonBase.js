@@ -4,11 +4,11 @@ import { Ionicons } from '@expo/vector-icons'
 
 import Touchable from './Touchable'
 
-const HeaderButton = ({ iconName, onPress }) => {
+const HeaderButtonBase = ({ iconName, onPress, color }) => {
     return <View style={styles.container}>
         <Touchable onPress={onPress}>
             <View style={styles.icon}>
-                <Ionicons name={iconName} size={30} color={Platform.OS === 'ios' ? 'black' : 'white'} />
+                <Ionicons name={iconName} size={30} color={color} />
             </View>
         </Touchable>
     </View>
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HeaderButton
+export default HeaderButtonBase

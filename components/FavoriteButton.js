@@ -1,11 +1,12 @@
 import React from 'react'
 
-import HeaderButton from './HeaderButton'
+import HeaderButtonBase from './HeaderButtonBase'
 
-const FavoriteButton = (props) => {
-    return <HeaderButton
+const FavoriteButton = ({ color }) => {
+    return <HeaderButtonBase
+        color={color}
         iconName='ios-star'
-        onPress={() => console.log('dffdfff')}
+        onPress={() => console.log('Favorite pressed')}
     />
 }
 

@@ -1,9 +1,10 @@
 import React from 'react'
 
-import HeaderButton from './HeaderButton'
+import HeaderButtonBase from './HeaderButtonBase'
 
-const DrawerButton = ({ navigation }) => {
-    return <HeaderButton
+const DrawerButton = ({ navigation, color }) => {
+    return <HeaderButtonBase
+        color={color}
         iconName='ios-menu'
         onPress={() => navigation.openDrawer()}
     />
