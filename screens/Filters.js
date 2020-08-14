@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { useDispatch } from 'react-redux'
 
 import { FilterControl } from '../components'
 import { Fonts } from '../theme'
 import { setFilters } from '../store'
+
+import { SaveFilters } from '../contexts'
 
 const Filters = ({ navigation }) => {
     const [isGlutenFree, setIsGlutenFree] = useState(false)
@@ -13,6 +15,8 @@ const Filters = ({ navigation }) => {
     const [isVegetaran, setIsVegetaran] = useState(false)
 
     const dispatch = useDispatch()
+
+    const [save, setSave] = useContext(SaveFilters)
 
     const saveFilters = useCallback(
         () => dispatch(setFilters({
@@ -25,7 +29,7 @@ const Filters = ({ navigation }) => {
     )
 
     useEffect(() => {
-        navigation.setParams({ save: saveFilters })
+        setSave(() => saveFilters)
     }, [saveFilters])
 
     return <View style={styles.screen}>
