@@ -1,14 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
 import { FilterControl } from '../components'
 import { Fonts } from '../theme'
 
-const Filters = props => {
+const Filters = ({ navigation }) => {
     const [isGlutenFree, setIsGlutenFree] = useState(false)
     const [isLactoseFree, setIsLactoseFree] = useState(false)
     const [isVegan, setIsVegan] = useState(false)
     const [isVegetaran, setIsVegetaran] = useState(false)
+
+    const saveFilters = useCallback(
+        () => {
+            console.log({
+                isGlutenFree,
+                isLactoseFree,
+                isVegan,
+                isVegetaran
+            })
+        },
+        [isGlutenFree, isLactoseFree, isVegan, isVegetaran]
+    )
+
+    useEffect(() => {
+        navigation.setParams({ save: saveFilters })
+    }, [saveFilters])
 
     return <View style={styles.screen}>
         <View style={styles.container}>

@@ -13,10 +13,10 @@ const FiltersStack = ({ navigation }) => {
         <Stack.Screen
             component={Filters}
             name='Filters'
-            options={{ 
+            options={({ route, navigation }) => ({
                 headerLeft: ({ tintColor }) => <DrawerButton navigation={navigation} color={tintColor} />,
-                headerRight: HeaderButtonCreator(FiltersSaveButton, { onPress: () => console.log('save filters') })
-            }}
+                headerRight: HeaderButtonCreator(FiltersSaveButton, { onPress: route.params?.save })
+            })}
         />
     </Stack.Navigator>
 }
