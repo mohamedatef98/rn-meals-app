@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux'
 import mealReducer from './meals/reducer'
-import { toggleFavorite } from './meals/actions'
+import { toggleFavorite, setFilters } from './meals/actions'
 
 const reducer = combineReducers({
     meals: mealReducer
@@ -10,5 +10,6 @@ const store = createStore(reducer)
 
 export default store
 export {
-    toggleFavorite
+    toggleFavorite,
+    setFilters
 }
