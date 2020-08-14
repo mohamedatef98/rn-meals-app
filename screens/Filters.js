@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { useDispatch } from 'react-redux'
 
-import { FilterControl } from '../components'
-import { Fonts } from '../theme'
+import { FilterControl, Button } from '../components'
+import { Fonts, Colors } from '../theme'
 import { setFilters } from '../store'
 
 import { SaveFilters } from '../contexts'
@@ -19,13 +19,25 @@ const Filters = ({ navigation }) => {
     const [save, setSave] = useContext(SaveFilters)
 
     const saveFilters = useCallback(
-        () => dispatch(setFilters({
-            isGlutenFree,
-            isLactoseFree,
-            isVegan,
-            isVegetaran
-        })),
-        [isGlutenFree, isLactoseFree, isVegan, isVegetaran, dispatch]
+        () => {
+            dispatch(setFilters({
+                isGlutenFree,
+                isLactoseFree,
+                isVegan,
+                isVegetaran
+            }))
+            navigation.goBack()
+        },
+        [isGlutenFree, isLactoseFree, isVegan, isVegetaran, dispatch, navigation]
+    )
+
+    const resetFilters = useCallback(
+        () => {
+            setIsGlutenFree(false)
+            setIsLactoseFree(false)
+            setIsVegan(false)
+            setIsVegetaran(false)
+        }, []
     )
 
     useEffect(() => {
@@ -59,6 +71,10 @@ const Filters = ({ navigation }) => {
                 onFilterChange={setIsVegetaran}
                 style={styles.filter}
             />
+            <View style={styles.controls}>
+                <Button title='Reset' onPress={resetFilters} color={Colors.accent} />
+                <Button title='Confirm' onPress={saveFilters} color={Colors.primary} />
+            </View>
         </View>
     </View>
 }
@@ -78,6 +94,11 @@ const styles = StyleSheet.create({
     },
     filter: {
         marginTop: 10
+    },
+    controls: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginVertical: 10
     }
 })
 

@@ -23,7 +23,6 @@ const FiltersStack = ({ navigation }) => {
                     headerRight: HeaderButtonCreator(FiltersSaveButton, {
                         onPress: () => {
                             save()
-                            navigation.goBack()
                         }
                     })
                 })}
