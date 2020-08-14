@@ -15,5 +15,5 @@ export default (customColor) => ({
             }
         })
     },
-    headerTintColor: 'white'
+    headerTintColor: Platform.OS === 'ios' ? 'black' : 'white'
 })
