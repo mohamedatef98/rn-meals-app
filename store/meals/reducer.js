@@ -1,4 +1,5 @@
 import { MEALS } from '../../data/dummy-data'
+import { ACTION_TYPES } from './actions'
 
 const initialState = {
     meals: MEALS,
@@ -7,7 +8,20 @@ const initialState = {
 }
 
 const mealsReducer = (state = initialState, action) => {
-    return state
+    switch(action.type) {
+        case ACTION_TYPES.toggleFavorite:
+            const favoriteIndex = state.favoriteMeals.indexOf(action.payload)
+            if (favoriteIndex !== -1) {
+                const newFavoriteMeals = [...state.favoriteMeals]
+                newFavoriteMeals.splice(favoriteIndex, 1)
+                return { ...state, favoriteMeals: newFavoriteMeals }
+            }
+            else
+                return { ...state, favoriteMeals: [...state.favoriteMeals, action.payload] }
+
+        default:
+            return state
+    }
 }
 
 export default mealsReducer
