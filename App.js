@@ -2,11 +2,13 @@ import React, { useState, useCallback } from 'react'
 import { AppLoading } from 'expo'
 import { NavigationContainer } from '@react-navigation/native'
 import { enableScreens } from 'react-native-screens'
+import { Provider } from 'react-redux'
 
 import { loadAsync } from 'expo-font'
 
 import MainNavigator from './navigators'
 import { FontsPaths } from './theme'
+import store from './store'
 
 enableScreens()
 
@@ -32,7 +34,9 @@ const App = props => {
             onError={handleOnLoadingError}
         /> :
         <NavigationContainer>
-            <MainNavigator />
+            <Provider store={store}>
+                <MainNavigator />
+            </Provider>
         </NavigationContainer>
 }
 
