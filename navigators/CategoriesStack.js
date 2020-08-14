@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { CategoriesList, MealDetails, Category } from '../screens'
-import { DrawerButton, FavoriteButton, HeaderButtonCreator } from '../components'
+import { DrawerButton, HeaderButtonBase, HeaderButtonCreator } from '../components'
 import { Colors } from '../theme'
 
 import sharedScreenOptions from './stackSharedScreenOptions'
@@ -14,6 +14,7 @@ const Stack = createStackNavigator()
 
 const StackNavigator = ({ navigation }) => {
     const dispatch = useDispatch()
+    const favMeals = useSelector(state => state.meals.favoriteMeals)
 
     return <Stack.Navigator screenOptions={sharedScreenOptions(Colors.primary)}>
         <Stack.Screen
@@ -33,7 +34,10 @@ const StackNavigator = ({ navigation }) => {
             name='MealDetails'
             options={({ route }) => ({
                 title: route?.params?.meal?.title,
-                headerRight: HeaderButtonCreator(FavoriteButton, { onPress: () => dispatch(toggleFavorite(route?.params?.meal)) })
+                headerRight: HeaderButtonCreator(HeaderButtonBase, {
+                    onPress: () => dispatch(toggleFavorite(route?.params?.meal)),
+                    iconName: favMeals.includes(route?.params?.meal) ? 'ios-star' : 'ios-star-outline' 
+                })
             })}
             component={MealDetails}
         />
