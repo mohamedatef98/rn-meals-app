@@ -15,7 +15,12 @@ const FiltersStack = ({ navigation }) => {
             name='Filters'
             options={({ route, navigation }) => ({
                 headerLeft: ({ tintColor }) => <DrawerButton navigation={navigation} color={tintColor} />,
-                headerRight: HeaderButtonCreator(FiltersSaveButton, { onPress: route.params?.save })
+                headerRight: HeaderButtonCreator(FiltersSaveButton, {
+                    onPress: () => {
+                        route.params?.save()
+                        navigation.goBack()
+                    }
+                })
             })}
         />
     </Stack.Navigator>
