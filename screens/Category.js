@@ -1,15 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import { MealList } from '../components'
 
-import { MEALS } from '../data/dummy-data'
-
 const Category = ({ route, navigation }) => {
     const { category } = route.params
+    
+    const meals = useSelector(state => state.meals.filteredMeals)
 
-    const meals = MEALS.filter(meal => meal.categoryIds.includes(category.id))
+    const categoryMeals = meals.filter(meal => meal.categoryIds.includes(category.id))
 
-    return <MealList meals={meals} onMealSelected={(meal) => navigation.navigate('MealDetails', { meal })} />
+    return <MealList meals={categoryMeals} onMealSelected={(meal) => navigation.navigate('MealDetails', { meal })} />
 }
 
 export default Category
