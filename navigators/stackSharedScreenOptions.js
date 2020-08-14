@@ -14,5 +14,6 @@ export default (customColor) => ({
                 color: 'white'
             }
         })
-    }
+    },
+    headerTintColor: 'white'
 })

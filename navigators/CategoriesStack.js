@@ -21,7 +21,7 @@ const StackNavigator = ({ navigation }) => {
             name='CategoriesList'
             options={{
                 title: 'Categories',
-                headerLeft: () => <DrawerButton navigation={navigation} />
+                headerLeft: HeaderButtonCreator(DrawerButton, { navigation })
             }}
             component={CategoriesList}
         />

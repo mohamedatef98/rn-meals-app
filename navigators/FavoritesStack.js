@@ -20,7 +20,7 @@ const FavoritesStack = ({ navigation }) => {
             component={Favorites}
             name='Your Favorites'
             options={{
-                headerLeft: () => <DrawerButton navigation={navigation} />
+                headerLeft: HeaderButtonCreator(DrawerButton, { navigation })
             }}
         />
         <Stack.Screen
